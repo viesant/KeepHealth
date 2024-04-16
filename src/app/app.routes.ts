@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { DietComponent } from './diet/diet.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -9,12 +8,8 @@ import { HomeComponent } from './home/home.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'register',
+    redirectTo: 'home',
     pathMatch: 'full',
-  },
-  {
-    path: 'diet',
-    component: DietComponent,
   },
   {
     path: 'home',
@@ -25,15 +20,19 @@ export const routes: Routes = [
     component: ActivitiesComponent,
   },
   {
-    path: 'register',
-    component: RegisterComponent,
+    path: 'diet',
+    loadChildren: () => import('./diet/diet.module').then((m) => m.DietModule),
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
   },
   {
     path: 'login',
     component: LoginComponent,
   },
   {
-    path: 'profile',
-    component: ProfileComponent,
+    path: 'register',
+    component: RegisterComponent,
   },
 ];

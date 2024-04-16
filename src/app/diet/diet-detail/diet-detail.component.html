@@ -1,1 +1,17 @@
-<p>diet-detail works!</p>
+<div class="dietDetal-component flex justify-content-center align-items-center">
+  <p-panel
+    [header]="detailFood.name"
+    class="panel-container"
+    [style]="{ 'max-width': '600px' }"
+  >
+    <p><strong>Descrição:</strong> {{ detailFood.description }}</p>
+    <p><strong>Valor energético:</strong> {{ detailFood.qttCalories }} kcal</p>
+    <p>
+      <strong>Frequência sugerida:</strong>
+      {{ detailFood.qttDaysFeed }}x por semana
+    </p>
+    <div class="img-container flex justify-content-center">
+      <img [src]="detailFood.imageLink" alt="Imagem do Alimento" />
+    </div>
+  </p-panel>
+</div>

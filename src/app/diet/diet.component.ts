@@ -1,22 +1,8 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { InputTextModule } from 'primeng/inputtext';
-import { CardModule } from 'primeng/card';
-
-interface Food {
-  id: number;
-  name: string;
-  description: string;
-  qttCalories: number;
-  qttDaysFeed: number;
-  imageLink: string;
-}
+import { Food } from '../interfaces/food';
 
 @Component({
   selector: 'app-diet',
-  standalone: true,
-  imports: [FormsModule, RouterLink, InputTextModule, CardModule],
   templateUrl: './diet.component.html',
   styleUrl: './diet.component.scss',
 })
