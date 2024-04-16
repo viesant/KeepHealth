@@ -11,10 +11,10 @@
       label="Excluir atividades"
     ></p-button>
   </div>
-  <div class="cards flex justify-content-center">
+  <div class="flex justify-content-center flex-wrap">
     @for (activity of activitiesListRender; track $index) {
 
-    <p-card [style]="{ width: '150px' }">
+    <p-card [style]="{ width: '175px', height: '380px' }">
       <ng-template pTemplate="header">
         <img [alt]="activity.name" [src]="activity.img" />
       </ng-template>
@@ -37,10 +37,6 @@
         ></p-button>
       </ng-template>
     </p-card>
-
-    <!-- <div class="card">
-      
-    </div> -->
     }
   </div>
 </div>
