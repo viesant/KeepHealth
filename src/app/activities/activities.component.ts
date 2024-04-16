@@ -117,16 +117,18 @@ export class ActivitiesComponent {
       (item: { name: string; img?: string }) => {
         switch (item.name) {
           case 'Caminhada':
-            item.img = 'https://placehold.jp/150x150.png';
+            item.img =
+              'https://placehold.co/150x150/3B82F6/white?text=caminhada';
             break;
           case 'Corrida':
-            item.img = 'https://placehold.jp/150x150.png';
+            item.img = 'https://placehold.co/150x150/3B82F6/white?text=corrida';
             break;
           case 'Ciclismo':
-            item.img = 'https://placehold.jp/150x150.png';
+            item.img =
+              'https://placehold.co/150x150/3B82F6/white?text=ciclismo';
             break;
           case 'Natação':
-            item.img = 'https://placehold.jp/150x150.png';
+            item.img = 'https://placehold.co/150x150/3B82F6/white?text=natação';
             break;
           default:
             break;

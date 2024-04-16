@@ -1,5 +1,5 @@
-<div class="card flex flex-column">
-  <div class="buttons flex justify-content-center">
+<div class="activities-component flex flex-column justify-content-center">
+  <div class="buttons-container flex justify-content-center">
     <p-button
       (click)="showDialog()"
       icon="pi pi-external-link"
@@ -11,11 +11,12 @@
       label="Excluir atividades"
     ></p-button>
   </div>
-  <div class="flex justify-content-center flex-wrap">
+
+  <div class="cards-container flex justify-content-center flex-wrap">
     @for (activity of activitiesListRender; track $index) {
 
     <p-card
-      class="cards"
+      class="card"
       [style]="{ width: '175px', height: '316px', position: 'relative' }"
     >
       <ng-template pTemplate="header">
@@ -41,84 +42,91 @@
     </p-card>
     }
   </div>
-</div>
+  <!-- </div> -->
 
-<p-dialog
-  header="Adicionar atividade"
-  [(visible)]="dialogVisible"
-  [breakpoints]="{ '768px': '75vw', '480px': '97vw' }"
-  [style]="{ width: '50vw', maxwidth: '750px' }"
-  [draggable]="false"
-  [resizable]="false"
-  [modal]="true"
->
-  <div class="form flex justify-content-center">
-    <form [formGroup]="activitiesForm" (ngSubmit)="submitForm()">
-      <div class="input">
-        <span class="p-float-label">
-          <p-dropdown
-            appendTo="body"
-            formControlName="name"
-            [options]="optActivities"
-            inputId="name"
-            placeholder="Selecione uma atividade"
-            [style]="{ width: '350px' }"
-          ></p-dropdown>
-          <label for="name">Atividade *</label>
-        </span>
+  <div class="dialog-container">
+    <p-dialog
+      header="Adicionar atividade"
+      [(visible)]="dialogVisible"
+      [breakpoints]="{ '768px': '75vw', '480px': '97vw' }"
+      [style]="{ width: '50vw', maxwidth: '750px' }"
+      [draggable]="false"
+      [resizable]="false"
+      [modal]="true"
+    >
+      <div class="form flex justify-content-center">
+        <form [formGroup]="activitiesForm" (ngSubmit)="submitForm()">
+          <div class="input">
+            <span class="p-float-label">
+              <p-dropdown
+                appendTo="body"
+                formControlName="name"
+                [options]="optActivities"
+                inputId="name"
+                placeholder="Selecione uma atividade"
+                [style]="{ width: '350px' }"
+              ></p-dropdown>
+              <label for="name">Atividade *</label>
+            </span>
+          </div>
+          <div class="input">
+            <span class="p-float-label">
+              <p-calendar
+                formControlName="date"
+                appendTo="body"
+                dateFormat="dd/mm/yy"
+                [iconDisplay]="'input'"
+                [showIcon]="true"
+                [showButtonBar]="true"
+                inputId="date"
+                [style]="{ width: '350px' }"
+              ></p-calendar>
+              <label for="date">Data *</label>
+            </span>
+          </div>
+          <div class="input flex justify-content-center">
+            <span class="p-float-label">
+              <p-inputNumber
+                formControlName="distance"
+                inputId="distance"
+                suffix=" km"
+                locale="pt"
+                [style]="{ width: '350px' }"
+                [useGrouping]="false"
+                [maxlength]="3"
+              ></p-inputNumber>
+              <label for="distance">Distância</label>
+            </span>
+          </div>
+          <div class="input flex justify-content-center">
+            <span class="p-float-label">
+              <p-inputNumber
+                formControlName="duration"
+                inputId="duration"
+                suffix=" min"
+                locale="pt"
+                [style]="{ width: '350px' }"
+                [useGrouping]="false"
+                [maxlength]="3"
+              ></p-inputNumber>
+              <label for="duration">Duração</label>
+            </span>
+          </div>
+          <div class="buttonsForm flex justify-content-center">
+            <p-button
+              type="Submit"
+              label="Adicionar"
+              icon="pi pi-plus"
+              [disabled]="activitiesForm.invalid"
+            ></p-button>
+            <p-button
+              type="reset"
+              label="Limpar"
+              icon="pi pi-eraser"
+            ></p-button>
+          </div>
+        </form>
       </div>
-      <div class="input">
-        <span class="p-float-label">
-          <p-calendar
-            formControlName="date"
-            appendTo="body"
-            dateFormat="dd/mm/yy"
-            [iconDisplay]="'input'"
-            [showIcon]="true"
-            [showButtonBar]="true"
-            inputId="date"
-            [style]="{ width: '350px' }"
-          ></p-calendar>
-          <label for="date">Data *</label>
-        </span>
-      </div>
-      <div class="input flex justify-content-center">
-        <span class="p-float-label">
-          <p-inputNumber
-            formControlName="distance"
-            inputId="distance"
-            suffix=" km"
-            locale="pt"
-            [style]="{ width: '350px' }"
-            [useGrouping]="false"
-            [maxlength]="3"
-          ></p-inputNumber>
-          <label for="distance">Distância</label>
-        </span>
-      </div>
-      <div class="input flex justify-content-center">
-        <span class="p-float-label">
-          <p-inputNumber
-            formControlName="duration"
-            inputId="duration"
-            suffix=" min"
-            locale="pt"
-            [style]="{ width: '350px' }"
-            [useGrouping]="false"
-            [maxlength]="3"
-          ></p-inputNumber>
-          <label for="duration">Duração</label>
-        </span>
-      </div>
-      <div class="buttonsForm flex justify-content-center">
-        <p-button
-          type="Submit"
-          label="Adicionar"
-          icon="pi pi-plus"
-          [disabled]="activitiesForm.invalid"
-        ></p-button>
-        <p-button type="reset" label="Limpar" icon="pi pi-eraser"></p-button>
-      </div>
-    </form>
+    </p-dialog>
   </div>
-</p-dialog>
+</div>

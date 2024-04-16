@@ -1,1 +1,31 @@
-<p>diet works!</p>
+<div class="diet-component flex flex-column justify-content-center">
+  <div class="search-container flex justify-content-center">
+    <span class="p-input-icon-right">
+      <i class="pi pi-search"></i>
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="searchInput"
+        placeholder="Pesquisar alimento"
+        (input)="searchFood()"
+      />
+    </span>
+  </div>
+
+  <div class="cards-container flex justify-content-center flex-wrap">
+    @for (food of showedFoodList; track food.id) {
+
+    <p-card
+      [header]="food.name"
+      [style]="{ width: '175px', height: '400px', }"
+      [routerLink]="[food.id]"
+      class="card"
+    >
+      <ng-template pTemplate="header">
+        <img [alt]="food.name" [src]="food.imageLink" />
+      </ng-template>
+      <p class="m-0">{{ food.description }}</p>
+    </p-card>
+    }
+  </div>
+</div>
