@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ActivitiesComponent } from './activities/activities.component';
 import { HomeComponent } from './home/home.component';
+import { foodIdValidationGuard } from './shared/guards/food-id-validation.guard';
 
 export const routes: Routes = [
   {
@@ -21,6 +22,7 @@ export const routes: Routes = [
   },
   {
     path: 'diet',
+    canActivateChild: [foodIdValidationGuard],
     loadChildren: () => import('./diet/diet.module').then((m) => m.DietModule),
   },
   {
