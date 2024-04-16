@@ -14,28 +14,30 @@
   <div class="flex justify-content-center flex-wrap">
     @for (activity of activitiesListRender; track $index) {
 
-    <p-card [style]="{ width: '175px', height: '380px' }">
+    <p-card
+      class="cards"
+      [style]="{ width: '175px', height: '316px', position: 'relative' }"
+    >
       <ng-template pTemplate="header">
         <img [alt]="activity.name" [src]="activity.img" />
       </ng-template>
-      <p class="m-0">{{ activity.name }}</p>
-      <p class="m-0">{{ activity.date }}</p>
-      @if (activity.distance) {
-      <span class="m-0">{{ activity.distance }} km </span>
-      } @if(activity.distance && activity.duration){
-      <span class="m-0"> - </span>
-      } @if (activity.duration) {
-      <span class="m-0">{{ activity.duration }} min</span>
-      }
-      <ng-template pTemplate="footer">
-        <!-- <p-button label="Save" icon="pi pi-check"></p-button> -->
-        <p-button
-          icon="pi pi-times"
-          styleClass="p-button-secondary"
-          [style]="{ 'margin-left': '.5em' }"
-          (click)="deleteActivity($index)"
-        ></p-button>
+      <ng-template pTemplate="p-card-content">
+        <p class="m-0">{{ activity.name }}</p>
+        <p class="m-0">{{ activity.date }}</p>
+        @if (activity.distance) {
+        <span class="m-0">{{ activity.distance }} km </span>
+        } @if(activity.distance && activity.duration){
+        <span class="m-0"> - </span>
+        } @if (activity.duration) {
+        <span class="m-0">{{ activity.duration }} min</span>
+        }
       </ng-template>
+      <p-button
+        icon="pi pi-times"
+        styleClass="p-button-rounded p-button-secondary p-button-raised p-button-text"
+        class="delete-button"
+        (click)="deleteActivity($index)"
+      ></p-button>
     </p-card>
     }
   </div>
