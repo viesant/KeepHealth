@@ -1,5 +1,6 @@
 <div class="register-component flex flex-column align-items-center">
   <h1 class="mb-0">Cadastro de usuário</h1>
+  <small class="mb-0">Campos com * são obrigatórios</small>
   <div class="form-container flex flex-column align-items-center">
     <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
       <div class="input p-fluid mt-4 flex flex-column">
@@ -121,7 +122,12 @@
           icon="pi pi-plus"
           [disabled]="registerForm.invalid"
         ></p-button>
-        <p-button type="reset" label="Limpar" icon="pi pi-eraser"></p-button>
+        <p-button
+          type="reset"
+          label="Limpar"
+          icon="pi pi-eraser"
+          severity="secondary"
+        ></p-button>
       </div>
     </form>
     <p-button

@@ -1,1 +1,48 @@
-<p>login works!</p>
+<div class="login-component flex flex-column align-items-center">
+  <h1>Keep Health</h1>
+  <small class="mb-0">Acesse sua conta ou clique em cadastrar</small>
+  <div class="form-container flex flex-column align-items-center">
+    <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+      <div class="input p-fluid mt-4 flex flex-column">
+        <span class="p-float-label">
+          <input
+            id="email"
+            type="email"
+            pInputText
+            formControlName="email"
+            aria-describedby="email-help"
+          />
+          <label for="email">Email</label>
+        </span>
+      </div>
+
+      <div class="input p-fluid mt-4 flex flex-column">
+        <span class="p-float-label">
+          <input
+            id="password"
+            type="password"
+            pInputText
+            formControlName="password"
+            aria-describedby="password-help"
+          />
+          <label for="password">Senha</label>
+        </span>
+      </div>
+
+      <div class="buttonsForm flex justify-content-center mt-4 mb-2 gap-1">
+        <p-button
+          type="Submit"
+          label="Entrar"
+          [disabled]="loginForm.invalid"
+        ></p-button>
+        <p-button
+          type="button"
+          label="Esqueci a senha"
+          (onClick)="resetPassword()"
+          severity="secondary"
+        ></p-button>
+      </div>
+    </form>
+    <p-button type="button" label="Cadastrar" routerLink="/register"></p-button>
+  </div>
+</div>

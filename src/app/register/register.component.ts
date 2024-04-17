@@ -6,13 +6,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { Router } from '@angular/router';
 import dayjs from 'dayjs';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { CalendarModule } from 'primeng/calendar';
-import { CardModule } from 'primeng/card';
 // import { ToastModule } from 'primeng/toast';
 // import { MessageService } from 'primeng/api';
 
@@ -26,14 +24,13 @@ import { CardModule } from 'primeng/card';
     FloatLabelModule,
     ButtonModule,
     CalendarModule,
-    CardModule,
     // ToastModule,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
-  constructor(private router: Router) {}
+  // constructor(private router: Router) {}
   // constructor(private router: Router, private messageService: MessageService) {}
 
   registerForm = new FormGroup({
@@ -58,31 +55,31 @@ export class RegisterComponent {
 
   submitForm() {
     if (this.registerForm.valid) {
-      const nameForm = this.registerForm.get('name')?.value;
-      const emailForm = this.registerForm.get('email')?.value;
-      const birthdayForm = dayjs(
+      const nameField = this.registerForm.get('name')?.value;
+      const emailField = this.registerForm.get('email')?.value;
+      const birthdayField = dayjs(
         this.registerForm.get('birthday')?.value
       ).format('DD/MM/YYYY');
-      const passwordForm = this.registerForm.get('password')?.value;
-      const passConfirmForm = this.registerForm.get('passConfirm')?.value;
-      if (passwordForm === passConfirmForm) {
+      const passwordField = this.registerForm.get('password')?.value;
+      const passConfirmField = this.registerForm.get('passConfirm')?.value;
+      if (passwordField === passConfirmField) {
         const userListString = localStorage.getItem('userList');
         const userList = !!userListString ? JSON.parse(userListString) : [];
         if (
-          userList.find((user: { email: string }) => user.email === emailForm)
+          userList.find((user: { email: string }) => user.email === emailField)
         ) {
           alert('Email já cadastrado!');
           return;
         }
         userList.push({
-          name: nameForm,
-          email: emailForm,
-          birthday: birthdayForm,
-          password: passwordForm,
+          name: nameField,
+          email: emailField,
+          birthday: birthdayField,
+          password: passwordField,
         });
         console.log(userList);
         localStorage.setItem('userList', JSON.stringify(userList));
-        alert('Usuario ' + emailForm + ' cadastrado com sucesso!');
+        alert('Usuario ' + emailField + ' cadastrado com sucesso!');
         this.registerForm.reset();
       } else {
         //erro: password diferente!
