@@ -1,1 +1,65 @@
-<p>register works!</p>
+<div class="register-component">
+  <div class="form-container flex justify-content-center">
+    <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+      <!-- <div class="input p-fluid mt-4"> -->
+      <div class="input mt-4 flex justify-content-center">
+        <span class="p-float-label">
+          <input id="name" type="text" pInputText formControlName="name" />
+          <label for="name">Nome*</label>
+        </span>
+      </div>
+      <div class="input mt-4 flex justify-content-center">
+        <span class="p-float-label">
+          <input id="email" type="email" pInputText formControlName="email" />
+          <label for="email">Email*</label>
+        </span>
+      </div>
+      <div class="input mt-4 flex justify-content-center">
+        <span class="p-float-label">
+          <p-calendar
+            formControlName="birthday"
+            appendTo="body"
+            dateFormat="dd/mm/yy"
+            [iconDisplay]="'input'"
+            [showIcon]="false"
+            [showButtonBar]="true"
+            inputId="birthday"
+          ></p-calendar>
+          <label for="date">Data de nascimento*</label>
+        </span>
+      </div>
+      <div class="input mt-4 flex justify-content-center">
+        <span class="p-float-label">
+          <input
+            id="password"
+            type="password"
+            pInputText
+            formControlName="password"
+          />
+          <label for="password">Senha*</label>
+        </span>
+      </div>
+      <div class="input mt-4 flex justify-content-center">
+        <span class="p-float-label">
+          <input
+            id="passwordConfirm"
+            type="password"
+            pInputText
+            formControlName="passwordConfirm"
+          />
+          <label for="passwordConfirm">Confirmar senha*</label>
+        </span>
+      </div>
+
+      <div class="buttonsForm flex justify-content-center mt-4">
+        <p-button
+          type="Submit"
+          label="Cadastrar"
+          icon="pi pi-plus"
+          [disabled]="registerForm.invalid"
+        ></p-button>
+        <p-button type="reset" label="Limpar" icon="pi pi-eraser"></p-button>
+      </div>
+    </form>
+  </div>
+</div>

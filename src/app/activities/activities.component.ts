@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {
   FormControl,
   FormGroup,
-  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -26,7 +25,6 @@ import { CardModule } from 'primeng/card';
     FloatLabelModule,
     InputNumberModule,
     CardModule,
-    FormsModule,
   ],
   templateUrl: './activities.component.html',
   styleUrl: './activities.component.scss',
@@ -48,7 +46,6 @@ export class ActivitiesComponent {
 
   submitForm() {
     if (this.activitiesForm.valid) {
-      console.log(this.activitiesForm.value);
       const activitiesListString = localStorage.getItem('activitiesList');
       const activitiesList = !!activitiesListString
         ? JSON.parse(activitiesListString)
@@ -80,7 +77,6 @@ export class ActivitiesComponent {
   }
 
   deleteActivity(index: number) {
-    console.log(index);
     const activitiesListString = localStorage.getItem('activitiesList');
     const tempActivitiesList = !!activitiesListString
       ? JSON.parse(activitiesListString)
@@ -135,6 +131,5 @@ export class ActivitiesComponent {
         }
       }
     );
-    console.log('render: ', this.activitiesListRender);
   }
 }

@@ -1,4 +1,4 @@
-<div class="activities-component flex flex-column justify-content-center">
+<div class="activities-component">
   <div class="buttons-container flex justify-content-center">
     <p-button
       (click)="showDialog()"
@@ -54,64 +54,52 @@
       [resizable]="false"
       [modal]="true"
     >
-      <div class="form flex justify-content-center">
+      <div class="form-container flex justify-content-center">
         <form [formGroup]="activitiesForm" (ngSubmit)="submitForm()">
-          <div class="input">
-            <span class="p-float-label">
-              <p-dropdown
-                appendTo="body"
-                formControlName="name"
-                [options]="optActivities"
-                inputId="name"
-                placeholder="Selecione uma atividade"
-                [style]="{ width: '350px' }"
-              ></p-dropdown>
-              <label for="name">Atividade *</label>
-            </span>
-          </div>
-          <div class="input">
-            <span class="p-float-label">
-              <p-calendar
-                formControlName="date"
-                appendTo="body"
-                dateFormat="dd/mm/yy"
-                [iconDisplay]="'input'"
-                [showIcon]="true"
-                [showButtonBar]="true"
-                inputId="date"
-                [style]="{ width: '350px' }"
-              ></p-calendar>
-              <label for="date">Data *</label>
-            </span>
-          </div>
-          <div class="input flex justify-content-center">
-            <span class="p-float-label">
-              <p-inputNumber
-                formControlName="distance"
-                inputId="distance"
-                suffix=" km"
-                locale="pt"
-                [style]="{ width: '350px' }"
-                [useGrouping]="false"
-                [maxlength]="3"
-              ></p-inputNumber>
-              <label for="distance">Distância</label>
-            </span>
-          </div>
-          <div class="input flex justify-content-center">
-            <span class="p-float-label">
-              <p-inputNumber
-                formControlName="duration"
-                inputId="duration"
-                suffix=" min"
-                locale="pt"
-                [style]="{ width: '350px' }"
-                [useGrouping]="false"
-                [maxlength]="3"
-              ></p-inputNumber>
-              <label for="duration">Duração</label>
-            </span>
-          </div>
+          <span class="input p-fluid p-float-label">
+            <p-dropdown
+              appendTo="body"
+              formControlName="name"
+              [options]="optActivities"
+              inputId="name"
+              placeholder="Selecione uma atividade"
+            ></p-dropdown>
+            <label for="name">Atividade *</label>
+          </span>
+          <span class="input p-fluid p-float-label">
+            <p-calendar
+              formControlName="date"
+              appendTo="body"
+              dateFormat="dd/mm/yy"
+              [iconDisplay]="'input'"
+              [showIcon]="true"
+              [showButtonBar]="true"
+              inputId="date"
+            ></p-calendar>
+            <label for="date">Data *</label>
+          </span>
+          <span class="input p-fluid p-float-label">
+            <p-inputNumber
+              formControlName="distance"
+              inputId="distance"
+              suffix=" km"
+              locale="pt"
+              [useGrouping]="false"
+              [maxlength]="3"
+            ></p-inputNumber>
+            <label for="distance">Distância</label>
+          </span>
+          <span class="input p-fluid p-float-label">
+            <p-inputNumber
+              formControlName="duration"
+              inputId="duration"
+              suffix=" min"
+              locale="pt"
+              [useGrouping]="false"
+              [maxlength]="3"
+            ></p-inputNumber>
+            <label for="duration">Duração</label>
+          </span>
           <div class="buttonsForm flex justify-content-center">
             <p-button
               type="Submit"
