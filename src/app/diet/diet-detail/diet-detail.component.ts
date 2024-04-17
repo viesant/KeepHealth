@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Food } from '../../interfaces/food';
+import { Food } from '../../shared/interfaces/food';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
