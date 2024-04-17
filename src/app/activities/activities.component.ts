@@ -12,6 +12,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CardModule } from 'primeng/card';
+import dayjs from 'dayjs';
 
 @Component({
   selector: 'app-activities',
@@ -51,21 +52,11 @@ export class ActivitiesComponent {
         ? JSON.parse(activitiesListString)
         : [];
 
-      const selectedDate: Date | null =
-        this.activitiesForm.get('date')?.value ?? null;
-      let formattedDate: string = '';
-      if (selectedDate instanceof Date && !isNaN(selectedDate.getTime())) {
-        const dia = selectedDate.getDate().toString().padStart(2, '0');
-        const mes = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
-        const ano = selectedDate.getFullYear();
-        formattedDate = `${dia}/${mes}/${ano}`;
-      } else {
-        console.error('Data inválida.');
-      }
-
       activitiesList.push({
         name: this.activitiesForm.get('name')?.value,
-        date: formattedDate,
+        date: dayjs(this.activitiesForm.get('date')?.value).format(
+          'DD/MM/YYYY'
+        ),
         distance: this.activitiesForm.get('distance')?.value,
         duration: this.activitiesForm.get('duration')?.value,
       });

@@ -195,6 +195,6 @@ export class AppComponent {
 
   showHeadSidebar(): boolean {
     // console.log(this.router.url);
-    return this.router.url != '/login' && this.router.url != '/cadastro';
+    return this.router.url != '/login' && this.router.url != '/register';
   }
 }

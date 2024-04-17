@@ -1,4 +1,5 @@
-<div class="register-component">
+<div class="register-component flex flex-column justify-content-center">
+  <h1>Cadastro de usuário</h1>
   <div class="form-container flex justify-content-center">
     <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
       <!-- <div class="input p-fluid mt-4"> -->
@@ -22,7 +23,7 @@
             dateFormat="dd/mm/yy"
             [iconDisplay]="'input'"
             [showIcon]="false"
-            [showButtonBar]="true"
+            [showButtonBar]="false"
             inputId="birthday"
           ></p-calendar>
           <label for="date">Data de nascimento*</label>
@@ -42,22 +43,18 @@
       <div class="input mt-4 flex justify-content-center">
         <span class="p-float-label">
           <input
-            id="passwordConfirm"
+            id="passConfirm"
             type="password"
             pInputText
-            formControlName="passwordConfirm"
+            formControlName="passConfirm"
           />
-          <label for="passwordConfirm">Confirmar senha*</label>
+          <label for="passConfirm">Confirmar senha*</label>
         </span>
       </div>
 
       <div class="buttonsForm flex justify-content-center mt-4">
-        <p-button
-          type="Submit"
-          label="Cadastrar"
-          icon="pi pi-plus"
-          [disabled]="registerForm.invalid"
-        ></p-button>
+        <p-button type="Submit" label="Cadastrar" icon="pi pi-plus"></p-button>
+        <!-- [disabled]="registerForm.invalid" -->
         <p-button type="reset" label="Limpar" icon="pi pi-eraser"></p-button>
       </div>
     </form>
