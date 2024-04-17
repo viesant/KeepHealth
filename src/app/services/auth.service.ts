@@ -6,7 +6,6 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   constructor() {
     this.getStatus();
-    console.log('entrou em service!');
   }
 
   getStatus(): string {

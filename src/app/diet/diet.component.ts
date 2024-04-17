@@ -20,7 +20,6 @@ export class DietComponent {
     }
   }
   searchFood() {
-    console.log(this.searchInput);
     if (!this.searchInput) {
       this.showedFoodList = this.foodList;
     } else {

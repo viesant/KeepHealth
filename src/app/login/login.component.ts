@@ -38,15 +38,14 @@ export class LoginComponent {
 
   submitForm() {
     if (this.loginForm.valid) {
-      const emailField = this.loginForm.get('email')?.value;
-      const passwordField = this.loginForm.get('password')?.value;
-      if (emailField && passwordField) {
-        const answer = this.auth.login(emailField, passwordField);
-        if (answer === 'success') {
-          this.router.navigate(['home']);
-        } else {
-          alert('Usuário e/ou senha inválidos');
-        }
+      const emailField = this.loginForm.get('email')?.value || '';
+      const passwordField = this.loginForm.get('password')?.value || '';
+
+      const answer = this.auth.login(emailField, passwordField);
+      if (answer === 'success') {
+        this.router.navigate(['home']);
+      } else {
+        alert('Usuário e/ou senha inválidos');
       }
     }
   }

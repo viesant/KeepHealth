@@ -12,7 +12,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CardModule } from 'primeng/card';
-import dayjs from 'dayjs';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-activities',
@@ -54,8 +54,10 @@ export class ActivitiesComponent {
 
       activitiesList.push({
         name: this.activitiesForm.get('name')?.value,
-        date: dayjs(this.activitiesForm.get('date')?.value).format(
-          'DD/MM/YYYY'
+        date: formatDate(
+          this.activitiesForm.get('date')?.value || '',
+          'dd/MM/YYYY',
+          'en'
         ),
         distance: this.activitiesForm.get('distance')?.value,
         duration: this.activitiesForm.get('duration')?.value,

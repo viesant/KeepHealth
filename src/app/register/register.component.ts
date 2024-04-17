@@ -6,11 +6,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import dayjs from 'dayjs';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { CalendarModule } from 'primeng/calendar';
+import { formatDate } from '@angular/common';
 // import { ToastModule } from 'primeng/toast';
 // import { MessageService } from 'primeng/api';
 
@@ -57,9 +57,11 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       const nameField = this.registerForm.get('name')?.value;
       const emailField = this.registerForm.get('email')?.value;
-      const birthdayField = dayjs(
-        this.registerForm.get('birthday')?.value
-      ).format('DD/MM/YYYY');
+      const birthdayField = formatDate(
+        this.registerForm.get('birthday')?.value || '',
+        'dd/MM/YYYY',
+        'en'
+      );
       const passwordField = this.registerForm.get('password')?.value;
       const passConfirmField = this.registerForm.get('passConfirm')?.value;
       if (passwordField === passConfirmField) {
@@ -77,12 +79,10 @@ export class RegisterComponent {
           birthday: birthdayField,
           password: passwordField,
         });
-        console.log(userList);
         localStorage.setItem('userList', JSON.stringify(userList));
         alert('Usuario ' + emailField + ' cadastrado com sucesso!');
         this.registerForm.reset();
       } else {
-        //erro: password diferente!
         alert('Senhas devem ser idênticas');
 
         // primeNG toast: (não funciona, não sei pq)
