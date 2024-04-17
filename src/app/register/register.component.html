@@ -1,21 +1,52 @@
-<div class="register-component flex flex-column justify-content-center">
-  <h1>Cadastro de usuário</h1>
-  <div class="form-container flex justify-content-center">
+<div class="register-component flex flex-column align-items-center">
+  <h1 class="mb-0">Cadastro de usuário</h1>
+  <div class="form-container flex flex-column align-items-center">
     <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
-      <!-- <div class="input p-fluid mt-4"> -->
-      <div class="input mt-4 flex justify-content-center">
+      <div class="input p-fluid mt-4 flex flex-column">
         <span class="p-float-label">
-          <input id="name" type="text" pInputText formControlName="name" />
+          <input
+            id="name"
+            type="text"
+            pInputText
+            formControlName="name"
+            aria-describedby="name-help"
+          />
           <label for="name">Nome*</label>
         </span>
+        @if (registerForm.controls.name.errors?.['required'] &&
+        (registerForm.controls.name.touched || registerForm.controls.name.dirty)
+        ) {
+        <small id="name-help" class="p-error"> Campo obrigatório </small>
+        } @if (registerForm.controls.name.errors?.['minlength'] &&
+        (registerForm.controls.name.touched || registerForm.controls.name.dirty)
+        ) {
+        <small id="name-help" class="p-error"> Mínimo 4 caracteres </small>
+        }
       </div>
-      <div class="input mt-4 flex justify-content-center">
+
+      <div class="input p-fluid mt-4 flex flex-column">
         <span class="p-float-label">
-          <input id="email" type="email" pInputText formControlName="email" />
+          <input
+            id="email"
+            type="email"
+            pInputText
+            formControlName="email"
+            aria-describedby="email-help"
+          />
           <label for="email">Email*</label>
         </span>
+        @if (registerForm.controls.email.errors?.['required'] &&
+        (registerForm.controls.email.touched ||
+        registerForm.controls.email.dirty) ) {
+        <small id="email-help" class="p-error"> Campo obrigatório </small>
+        } @if (registerForm.controls.email.errors?.['email'] &&
+        (registerForm.controls.email.touched ||
+        registerForm.controls.email.dirty) ) {
+        <small id="email-help" class="p-error"> Email inválido </small>
+        }
       </div>
-      <div class="input mt-4 flex justify-content-center">
+
+      <div class="input p-fluid mt-4 flex flex-column">
         <span class="p-float-label">
           <p-calendar
             formControlName="birthday"
@@ -25,38 +56,80 @@
             [showIcon]="false"
             [showButtonBar]="false"
             inputId="birthday"
+            aria-describedby="birthday-help"
           ></p-calendar>
           <label for="date">Data de nascimento*</label>
         </span>
+        @if (registerForm.controls.birthday.errors?.['required'] &&
+        (registerForm.controls.birthday.touched ||
+        registerForm.controls.birthday.dirty) ) {
+        <small id="birthday-help" class="p-error"> Campo obrigatório </small>
+        }
       </div>
-      <div class="input mt-4 flex justify-content-center">
+
+      <div class="input p-fluid mt-4 flex flex-column">
         <span class="p-float-label">
           <input
             id="password"
             type="password"
             pInputText
             formControlName="password"
+            aria-describedby="password-help"
           />
           <label for="password">Senha*</label>
         </span>
+
+        @if (registerForm.controls.password.errors?.['required'] &&
+        (registerForm.controls.password.touched ||
+        registerForm.controls.password.dirty) ) {
+        <small id="password-help" class="p-error"> Campo obrigatório </small>
+        } @if (registerForm.controls.password.errors?.['minlength'] &&
+        (registerForm.controls.password.touched ||
+        registerForm.controls.password.dirty) ) {
+        <small id="password-help" class="p-error"> Mínimo 4 caracteres </small>
+        }
       </div>
-      <div class="input mt-4 flex justify-content-center">
+
+      <div class="input p-fluid mt-4 flex flex-column">
         <span class="p-float-label">
           <input
             id="passConfirm"
             type="password"
             pInputText
             formControlName="passConfirm"
+            aria-describedby="passConfirm-help"
           />
           <label for="passConfirm">Confirmar senha*</label>
         </span>
+        @if (registerForm.controls.passConfirm.errors?.['required'] &&
+        (registerForm.controls.passConfirm.touched ||
+        registerForm.controls.passConfirm.dirty) ) {
+        <small id="passConfirm-help" class="p-error"> Campo obrigatório </small>
+        } @if (registerForm.controls.passConfirm.errors?.['minlength'] &&
+        (registerForm.controls.passConfirm.touched ||
+        registerForm.controls.passConfirm.dirty) ) {
+        <small id="passConfirm-help" class="p-error">
+          Mínimo 4 caracteres
+        </small>
+        }
       </div>
 
-      <div class="buttonsForm flex justify-content-center mt-4">
-        <p-button type="Submit" label="Cadastrar" icon="pi pi-plus"></p-button>
-        <!-- [disabled]="registerForm.invalid" -->
+      <!-- <p-toast></p-toast> -->
+      <div class="buttonsForm flex justify-content-center mt-4 gap-1">
+        <p-button
+          type="Submit"
+          label="Cadastrar"
+          icon="pi pi-plus"
+          [disabled]="registerForm.invalid"
+        ></p-button>
         <p-button type="reset" label="Limpar" icon="pi pi-eraser"></p-button>
       </div>
     </form>
+    <p-button
+      type="button"
+      class="mt-2"
+      label="Voltar"
+      routerLink="/login"
+    ></p-button>
   </div>
 </div>

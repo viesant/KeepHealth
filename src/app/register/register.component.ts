@@ -5,37 +5,36 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
+import dayjs from 'dayjs';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { CalendarModule } from 'primeng/calendar';
-import { Router } from '@angular/router';
-import dayjs from 'dayjs';
-// import moment from 'moment';
-// import { MessagesModule } from 'primeng/messages';
-// import { Message } from 'primeng/api';
-// import { MessageModule } from 'primeng/message';
+import { CardModule } from 'primeng/card';
+// import { ToastModule } from 'primeng/toast';
+// import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    RouterLink,
     InputTextModule,
     FloatLabelModule,
     ButtonModule,
     CalendarModule,
-    // MessagesModule,
-    // MessageModule,
+    CardModule,
+    // ToastModule,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
-  // messages: Message[] = [
-  //   { severity: 'error', summary: 'Error', detail: 'Closable Message Content' },
-  // ];
   constructor(private router: Router) {}
+  // constructor(private router: Router, private messageService: MessageService) {}
 
   registerForm = new FormGroup({
     name: new FormControl<string | null>(null, [
@@ -58,8 +57,6 @@ export class RegisterComponent {
   });
 
   submitForm() {
-    // console.log(dayjs(birthday).format('DD/MM/YYYY'));
-
     if (this.registerForm.valid) {
       const nameForm = this.registerForm.get('name')?.value;
       const emailForm = this.registerForm.get('email')?.value;
@@ -89,6 +86,15 @@ export class RegisterComponent {
         this.registerForm.reset();
       } else {
         //erro: password diferente!
+        alert('Senhas devem ser idênticas');
+
+        // primeNG toast: (não funciona, não sei pq)
+        // this.messageService.add({
+        //   key: 'bc',
+        //   severity: 'error',
+        //   summary: 'Erro',
+        //   detail: 'Senhas não são idênticas',
+        // });
       }
     } //form inválido
   }
