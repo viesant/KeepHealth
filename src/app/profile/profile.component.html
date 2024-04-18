@@ -1,1 +1,41 @@
-<p>profile works!</p>
+<div class="profile-component flex justify-content-center">
+  <p-panel
+    [header]="user.name"
+    class="panel-container p-fluid"
+    [style]="{ 'max-width': '600px', 'min-width': 'min(400px, 90vw)' }"
+  >
+    <p class="p-fluid">
+      <strong>Email:</strong>
+      {{ user.email }}
+    </p>
+    <p><strong>Código de usuário:</strong> {{ user.code }}</p>
+    <p><strong>Idade:</strong> {{ user.age }} anos</p>
+    <p><strong>Peso:</strong> {{ user.weight }} kg</p>
+    <p><strong>Altura:</strong> {{ user.height | cmToMeter }} m</p>
+
+    <div class="flex mt-5 gap-1">
+      <span class="p-float-label flex-grow-1">
+        <p-inputMask
+          mask="99.999-999"
+          [(ngModel)]="postalCode"
+          id="postalCode"
+          (keydown.enter)="findPostalCode()"
+        ></p-inputMask>
+        <label for="postalCode">Busca CEP</label>
+      </span>
+      <button
+        type="button"
+        pButton
+        icon="pi pi-search"
+        (click)="findPostalCode()"
+      ></button>
+    </div>
+    @if (address) {
+    <p><strong>Logradouro:</strong> {{ address["logradouro"] }}</p>
+    <p><strong>Bairro:</strong> {{ address["bairro"] }}</p>
+    <p><strong>Cidade:</strong> {{ address["localidade"] }}</p>
+    <p><strong>Estado:</strong> {{ address["uf"] }}</p>
+
+    }
+  </p-panel>
+</div>
