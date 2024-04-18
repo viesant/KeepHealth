@@ -60,13 +60,19 @@ export class ProfileComponent {
       let that = this;
       this.addressService.get(this.postalCode).subscribe({
         next(value) {
-          console.log(value);
-          that.address = value;
+          if (value && value.erro == true) {
+            that.address = 'notfound';
+          } else {
+            that.address = value;
+          }
         },
         error(err) {
           console.log(err);
+          that.address = null;
         },
       });
+    } else {
+      this.address = null;
     }
   }
 }

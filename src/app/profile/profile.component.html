@@ -30,12 +30,15 @@
         (click)="findPostalCode()"
       ></button>
     </div>
-    @if (address) {
+    @if (address && address != 'notfound') {
     <p><strong>Logradouro:</strong> {{ address["logradouro"] }}</p>
     <p><strong>Bairro:</strong> {{ address["bairro"] }}</p>
     <p><strong>Cidade:</strong> {{ address["localidade"] }}</p>
     <p><strong>Estado:</strong> {{ address["uf"] }}</p>
-
+    } @if (address && address == 'notfound'){
+    <p>
+      <strong class="p-error">Endereço não encontrado</strong>
+    </p>
     }
   </p-panel>
 </div>
