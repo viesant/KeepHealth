@@ -69,13 +69,15 @@
           <span class="input p-fluid p-float-label">
             <p-calendar
               formControlName="date"
+              inputId="date"
               appendTo="body"
               dateFormat="dd/mm/yy"
+              dataType="string"
               [iconDisplay]="'input'"
               [showIcon]="true"
               [showButtonBar]="true"
               [readonlyInput]="true"
-              inputId="date"
+              [touchUI]="isSmallScreen"
             ></p-calendar>
             <label for="date">Data *</label>
           </span>

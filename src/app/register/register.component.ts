@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -30,8 +30,12 @@ import { formatDate } from '@angular/common';
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
-  // constructor(private router: Router) {}
-  // constructor(private router: Router, private messageService: MessageService) {}
+  isSmallScreen = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isSmallScreen = window.innerWidth < 720;
+  }
 
   registerForm = new FormGroup({
     name: new FormControl<string | null>(null, [
@@ -42,7 +46,7 @@ export class RegisterComponent {
       Validators.required,
       Validators.email,
     ]),
-    birthday: new FormControl<Date | null>(null, [Validators.required]),
+    birthday: new FormControl<string | null>(null, [Validators.required]),
     password: new FormControl<string | null>(null, [
       Validators.required,
       Validators.minLength(4),
@@ -57,11 +61,7 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       const nameField = this.registerForm.get('name')?.value;
       const emailField = this.registerForm.get('email')?.value;
-      const birthdayField = formatDate(
-        this.registerForm.get('birthday')?.value || '',
-        'dd/MM/YYYY',
-        'en'
-      );
+      const birthdayField = this.registerForm.get('birthday')?.value;
       const passwordField = this.registerForm.get('password')?.value;
       const passConfirmField = this.registerForm.get('passConfirm')?.value;
       if (passwordField === passConfirmField) {

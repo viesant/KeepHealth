@@ -52,11 +52,14 @@
           <p-calendar
             formControlName="birthday"
             dateFormat="dd/mm/yy"
+            dataType="string"
             [iconDisplay]="'input'"
             [showIcon]="true"
             [showButtonBar]="false"
             inputId="birthday"
             aria-describedby="birthday-help"
+            [readonlyInput]="true"
+            [touchUI]="isSmallScreen"
           ></p-calendar>
           <label for="date">Data de nascimento*</label>
         </span>

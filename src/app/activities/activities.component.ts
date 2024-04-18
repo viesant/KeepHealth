@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -12,7 +12,6 @@ import { CalendarModule } from 'primeng/calendar';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CardModule } from 'primeng/card';
-import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-activities',
@@ -34,9 +33,16 @@ export class ActivitiesComponent {
   optActivities: string[] = ['Caminhada', 'Corrida', 'Ciclismo', 'Natação'];
   activitiesListRender: any = [];
 
+  isSmallScreen = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isSmallScreen = window.innerWidth < 720;
+  }
+
   activitiesForm = new FormGroup({
     name: new FormControl<string | null>(null, Validators.required),
-    date: new FormControl<Date | null>(null, Validators.required),
+    date: new FormControl<string | null>(null, Validators.required),
     distance: new FormControl<number | null>(null),
     duration: new FormControl<number | null>(null),
   });
@@ -54,11 +60,7 @@ export class ActivitiesComponent {
 
       activitiesList.push({
         name: this.activitiesForm.get('name')?.value,
-        date: formatDate(
-          this.activitiesForm.get('date')?.value || '',
-          'dd/MM/YYYY',
-          'en'
-        ),
+        date: this.activitiesForm.get('date')?.value,
         distance: this.activitiesForm.get('distance')?.value,
         duration: this.activitiesForm.get('duration')?.value,
       });
