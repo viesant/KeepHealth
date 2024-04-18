@@ -1,3 +1,11 @@
-<header>
-  <span class="title" routerLink="home">Keep Health</span>
-</header>
+<div class="header-component bg-primary">
+  <header class="flex align-items-center justify-content-between">
+    <h1 class="title" routerLink="home">Keep Health</h1>
+    <p-button
+      type="button"
+      label="Logout"
+      [raised]="true"
+      (click)="logout()"
+    ></p-button>
+  </header>
+</div>
